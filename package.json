@@ -2,8 +2,10 @@
   "name": "calendar-selector",
   "version": "0.0.1",
   "description": "一款用于预打卡得日历\u001b[D\u001b[D\u001b[D\u001b[Dvue日历插件",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "dev": "parcel index.html --no-cache",
+    "build": "parcel build index.html --no-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/hujinbin/calendar-selector/issues"
   },
-  "homepage": "https://github.com/hujinbin/calendar-selector#readme"
+  "homepage": "https://github.com/hujinbin/calendar-selector#readme",
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "vue-hot-reload-api": "^2.3.4"
+  }
 }
