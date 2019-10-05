@@ -8891,6 +8891,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8939,6 +8954,8 @@ var _default = {
     this.month = date.getMonth() + 1; //获取当前月份；
 
     this.day = date.getDate() < 10 ? '0' + String(date.getDate()) : date.getDate(); //获取当前日期；
+
+    this.init();
   },
   methods: {
     // 初始化
@@ -8949,60 +8966,70 @@ var _default = {
       var days = new Date(this.year, this.month, 0).getDate(); //计算上月有多少天；
 
       var dayw = new Date(this.year, this.month - 1, 0).getDate();
+      var dayList = [];
 
       for (var i = 1; i <= days; i++) {
         var time = new Date(this.year, this.month, i).getTime();
-        var dayList = [];
-        var yueSting = yue < 10 ? '0' + String(yue) : yue;
+        var yueSting = this.month < 10 ? '0' + String(this.month) : this.month;
         var si = i < 10 ? '0' + String(i) : i;
+        var calendar = '';
 
         if (yueSting + '-' + i == '01-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>元旦</i></li>";
+          calendar = '元旦';
         } else if (yueSting + '-' + i == '02-14') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>情人节</i></li>";
+          calendar = '情人节';
         } else if (yueSting + '-' + i == '03-08') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>妇女节</i></li>";
+          calendar = '妇女节';
         } else if (yueSting + '-' + i == '04-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>愚人节</i></li>";
+          calendar = '愚人节';
         } else if (yueSting + '-' + i == '05-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>劳动节</i></li>";
+          calendar = '劳动节';
         } else if (yueSting + '-' + i == '06-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>儿童节</i></li>";
+          calendar = '儿童节';
         } else if (yueSting + '-' + i == '07-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>建党节</i></li>";
+          calendar = '建党节';
         } else if (yueSting + '-' + i == '08-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>建军节</i></li>";
+          calendar = '建军节';
         } else if (yueSting + '-' + i == '09-10') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>教师节</i></li>";
+          calendar = '教师节';
         } else if (yueSting + '-' + i == '10-01') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>国庆节</i></li>";
+          calendar = '国庆节';
         } else if (yueSting + '-' + i == '11-11') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>光棍节</i></li>";
+          calendar = '光棍节';
         } else if (yueSting + '-' + i == '12-24') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>平安夜</i></li>";
+          calendar = '平安夜';
         } else if (yueSting + '-' + i == '12-25') {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span><i>圣诞节</i></li>";
+          calendar = '圣诞节';
         } else {
-          html += "<li data-jr=" + yueSting + "-" + i + " data-id=" + time + " data-date=" + nian + "-" + yueSting + "-" + si + "><span>" + i + "</span></li>";
+          calendar = '';
         }
+
+        dayList.push({
+          day: i,
+          calendar: calendar
+        });
       } //计算前面空格键；
 
 
-      var html2 = '';
+      var lastMonth = [];
 
       for (var j = dayw - week + 1; j <= dayw; j++) {
-        html2 += "<li class='no_date'>" + j + "</li>";
+        lastMonth.push({
+          day: j,
+          calendar: ''
+        });
       }
 
-      $('.date ul li').eq(0).before(html2); //计算后面空格键；
-
-      var html3 = '';
+      dayList = [].concat(lastMonth, _toConsumableArray(dayList)); //计算后面空格键；
 
       for (var x = 1; x < 43 - days - week; x++) {
-        html3 += "<li class='no_date'>" + x + "</li>";
+        dayList.push({
+          day: x,
+          calendar: ''
+        });
       }
 
-      $('.date ul li').eq(days + week - 1).after(html3);
+      this.timeList = dayList;
     }
   }
 };
@@ -9019,71 +9046,50 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "box" }, [
+    _c("section", { staticClass: "date" }, [
+      _c("div", { staticClass: "head" }, [
+        _c("div", { staticClass: "prev" }, [_vm._v("上一月")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tomon" }, [
+          _c("span", { staticClass: "year" }, [_vm._v(_vm._s(_vm.year))]),
+          _vm._v("年 "),
+          _c("span", { staticClass: "month" }, [_vm._v(_vm._s(_vm.month))]),
+          _vm._v("月")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "next" }, [_vm._v("下一月")])
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.timeList, function(item, index) {
+          return _c("li", { key: index, staticClass: "data-date" }, [
+            _c("span", [_vm._v(_vm._s(item.day))]),
+            _vm._v(" "),
+            _c("i", [_vm._v(_vm._s(item.calendar))])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "yuyue_left_bh" }, [
-      _c("div", { staticClass: "tit" }, [
-        _c("span", [_vm._v("2")]),
-        _vm._v("请选择日期")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "yy_tupian" }, [
-        _c("div", { staticClass: "box" }, [
-          _c("section", { staticClass: "date" }, [
-            _c("div", { staticClass: "head" }, [
-              _c("div", { staticClass: "prev" }, [_vm._v("上一月")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "tomon" }, [
-                _c("span", { staticClass: "year" }),
-                _vm._v("年 "),
-                _c("span", { staticClass: "month" }),
-                _vm._v("月")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "next" }, [_vm._v("下一月")])
-            ]),
-            _vm._v(" "),
-            _c("ol", [
-              _c("li", [_vm._v("周日")]),
-              _c("li", [_vm._v("周一")]),
-              _c("li", [_vm._v("周二")]),
-              _c("li", [_vm._v("周三")]),
-              _c("li", [_vm._v("周四")]),
-              _c("li", [_vm._v("周五")]),
-              _c("li", [_vm._v("周六")])
-            ]),
-            _vm._v(" "),
-            _c("ul", [
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("日期")])
-            ])
-          ])
-        ])
-      ])
+    return _c("ol", [
+      _c("li", [_vm._v("周日")]),
+      _c("li", [_vm._v("周一")]),
+      _c("li", [_vm._v("周二")]),
+      _c("li", [_vm._v("周三")]),
+      _c("li", [_vm._v("周四")]),
+      _c("li", [_vm._v("周五")]),
+      _c("li", [_vm._v("周六")])
     ])
   }
 ]
@@ -9166,7 +9172,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60773" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61922" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

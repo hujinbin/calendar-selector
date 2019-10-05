@@ -116,32 +116,10 @@ function datt(nian,yue,ri){
         if(tt_time > td_time && (tt_time - td_time)<=timeOut){
             $('.date ul li').eq(k).click(function(){
                 var _this=$(this);
-                //如果是双选日期则使用这个；
-                    /* if(num%2==0){
-                    _this.addClass('act_date');     //选择开始日期
-                    _this.siblings('li').removeClass('act_date');
-                    var dr=_this.attr('data-date');
-                    console.log(dr);
-                    num++;
-                }else if(num%2!=0){
-                    _this.addClass('act_ds');       //选择结束日期
-                    _this.siblings('li').removeClass('act_ds');
-                    var dd=_this.attr('data-date');
-                    console.log(dd);
-                    num++;
-                }*/
                 //如果是单选日期则使用这个；
                 _this.addClass('act_date');     //选择开始日期
                 _this.siblings('li').removeClass('act_date');
                 var dr=_this.attr('data-date');
-                console.log(dr);
-                // 通票购买
-                try {
-                    changeDate(dr);
-                }catch (e){
-
-                }
-                // 通票购买
             });
         }else if(tt_time == td_time){
             $('.date ul li').eq(k).addClass('act_date');
@@ -150,14 +128,6 @@ function datt(nian,yue,ri){
                 _this.addClass('act_date');
                 _this.siblings('li').removeClass('act_date');
                 var dr=_this.attr('data-date');
-                // console.log(dr);
-                // 通票购买
-                try {
-                    changeDate(dr);
-                }catch (e){
-
-                }
-                // 通票购买
             });
         }else{
             $('.date ul li').eq(k).addClass('no_date');
