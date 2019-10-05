@@ -8,7 +8,10 @@
                                      </div>
                                      <ol><li>周日</li><li>周一</li><li>周二</li><li>周三</li><li>周四</li><li>周五</li><li>周六</li></ol>
                                      <ul>
-                                         <li v-for="(item, index) in timeList" :key="index" class="data-date">
+                                         <li v-for="(item, index) in timeList"
+                                          :key="index"
+                                          class="data-date"
+                                          :class="`${item.state === 'before' ? 'no_date' : (item.state === 'today' ? 'act_date':'data-date')}`">
                                             <span>{{item.day}}</span>
                                              <i>{{item.calendar}}</i>
                                          </li>
@@ -97,18 +100,41 @@ export default {
         }else{
             calendar=''
         }
-        dayList.push({day:i,calendar:calendar})
+        //获取当前日期的时间戳；
+         const ym=new Date().getFullYear();
+        const mm=new Date().getMonth()+1;
+    const dm=new Date().getDate();
+    const td_time=new Date(ym,mm,dm).getTime();
+    let state= ''
+         if(time > td_time){
+            state='after'
+         }else if(time == td_time){
+            state='today'
+         }else{
+            state='before'  //不可选
+         }
+        dayList.push({
+            day:i, //展示日子
+            time:time, //时间戳
+            state:state,  //状态
+            calendar:calendar //节日农历
+        })
     }
    //计算前面空格键；
    let lastMonth = []
     for(var j=dayw-week+1;j<=dayw;j++){
-        lastMonth.push({day:j,calendar:''})
+        lastMonth.push({
+            state:'before',  //状态
+            day:j,calendar:''
+            })
     }
     dayList = [...lastMonth,...dayList]
 
 //计算后面空格键；
-    for(var x=1;x<43-days-week;x++){
-         dayList.push({day:x,calendar:''})
+    for(var x=1;x<36-days-week;x++){
+         dayList.push({
+              state:'before',  //状态
+             day:x,calendar:''})
     }
     this.timeList=dayList;
         },
