@@ -8959,6 +8959,22 @@ var _default = {
     this.day = date.getDate() < 10 ? '0' + String(date.getDate()) : date.getDate(); //获取当前日期；
 
     this.init();
+    var n930 = new Date(2019, 10, 30).getTime();
+    var n1001 = new Date(2019, 11, 1).getTime();
+    var today = new Date().getTime(); //    console.log(n7 - today)
+    //     console.log(n7)
+    //    console.log(today)
+    //    console.log('日志')
+
+    var timeOut = 2 * 24 * 60 * 60 * 1000; // console.log(timeOut)
+    // console.log((n7 - today)<timeOut)
+
+    var n32 = new Date(2019, 11, 2).getTime();
+    console.log(new Date(2019, 10, 30));
+    console.log(new Date(2019, 11, 1));
+    console.log(n1001 - n930);
+    console.log(n1001);
+    console.log(n930);
   },
   methods: {
     // 初始化
@@ -9214,7 +9230,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52117" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57048" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

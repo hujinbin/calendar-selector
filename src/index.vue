@@ -54,6 +54,22 @@ export default {
       this.month=date.getMonth()+1;    //获取当前月份；
       this.day=date.getDate()<10?'0'+String(date.getDate()):date.getDate();         //获取当前日期；
       this.init()
+       const n930=new Date(2019,10,30).getTime()
+        const n1001=new Date(2019,11,1).getTime()
+    const today=new Date().getTime()
+    //    console.log(n7 - today)
+    //     console.log(n7)
+    //    console.log(today)
+    //    console.log('日志')
+    const timeOut=2*24*60*60*1000;
+    // console.log(timeOut)
+    // console.log((n7 - today)<timeOut)
+    const n32=new Date(2019,11,2).getTime()
+      console.log(new Date(2019,10,30))
+       console.log(new Date(2019,11,1))
+ console.log(n1001 - n930)
+  console.log(n1001)
+   console.log(n930)
     },
     methods:{
         // 初始化
