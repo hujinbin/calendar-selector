@@ -65,8 +65,10 @@ export default {
     // console.log(timeOut)
     // console.log((n7 - today)<timeOut)
     const n32=new Date(2019,11,2).getTime()
-      console.log(new Date(2019,10,30))
-       console.log(new Date(2019,11,1))
+      console.log(new Date(2019,9,31))
+       console.log(new Date(2019,10,1))
+        const mm=new Date().getMonth()+1;
+       console.log(mm)
  console.log(n1001 - n930)
   console.log(n1001)
    console.log(n930)
@@ -118,7 +120,7 @@ export default {
         }
         //获取当前日期的时间戳；
          const ym=new Date().getFullYear();
-        const mm=new Date().getMonth()+1;
+        const mm=new Date().getMonth();
     const dm=new Date().getDate();
     const td_time=new Date(ym,mm,dm).getTime();
     let state= ''
