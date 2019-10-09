@@ -8959,24 +8959,6 @@ var _default = {
     this.day = date.getDate() < 10 ? '0' + String(date.getDate()) : date.getDate(); //获取当前日期；
 
     this.init();
-    var n930 = new Date(2019, 10, 30).getTime();
-    var n1001 = new Date(2019, 11, 1).getTime();
-    var today = new Date().getTime(); //    console.log(n7 - today)
-    //     console.log(n7)
-    //    console.log(today)
-    //    console.log('日志')
-
-    var timeOut = 2 * 24 * 60 * 60 * 1000; // console.log(timeOut)
-    // console.log((n7 - today)<timeOut)
-
-    var n32 = new Date(2019, 11, 2).getTime();
-    console.log(new Date(2019, 9, 31));
-    console.log(new Date(2019, 10, 1));
-    var mm = new Date().getMonth() + 1;
-    console.log(mm);
-    console.log(n1001 - n930);
-    console.log(n1001);
-    console.log(n930);
   },
   methods: {
     // 初始化
@@ -8990,7 +8972,8 @@ var _default = {
       var dayList = [];
 
       for (var i = 1; i <= days; i++) {
-        var time = new Date(this.year, this.month, i).getTime();
+        var month = this.month - 1;
+        var time = new Date(this.year, month, i).getTime();
         var yueSting = this.month < 10 ? '0' + String(this.month) : this.month;
         var si = i < 10 ? '0' + String(i) : i;
         var calendar = '';
@@ -9232,7 +9215,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65351" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64003" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

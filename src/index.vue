@@ -54,24 +54,6 @@ export default {
       this.month=date.getMonth()+1;    //获取当前月份；
       this.day=date.getDate()<10?'0'+String(date.getDate()):date.getDate();         //获取当前日期；
       this.init()
-       const n930=new Date(2019,10,30).getTime()
-        const n1001=new Date(2019,11,1).getTime()
-    const today=new Date().getTime()
-    //    console.log(n7 - today)
-    //     console.log(n7)
-    //    console.log(today)
-    //    console.log('日志')
-    const timeOut=2*24*60*60*1000;
-    // console.log(timeOut)
-    // console.log((n7 - today)<timeOut)
-    const n32=new Date(2019,11,2).getTime()
-      console.log(new Date(2019,9,31))
-       console.log(new Date(2019,10,1))
-        const mm=new Date().getMonth()+1;
-       console.log(mm)
- console.log(n1001 - n930)
-  console.log(n1001)
-   console.log(n930)
     },
     methods:{
         // 初始化
@@ -85,7 +67,8 @@ export default {
           var dayw=new Date(this.year,this.month-1,0).getDate();
            let dayList=[]
            for(var i=1;i<=days;i++){
-        var time=new Date(this.year,this.month,i).getTime();
+               const month=this.month-1
+        var time=new Date(this.year,month,i).getTime();
         var yueSting=this.month<10 ? '0'+String(this.month):this.month
         var si=i<10?'0'+String(i):i
         let calendar=''
