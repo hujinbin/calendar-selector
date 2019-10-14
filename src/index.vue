@@ -11,6 +11,7 @@
                                          <li v-for="(item, index) in timeList"
                                           :key="index"
                                           class="data-date"
+                                          @click="checkTime(item)"
                                           :class="`${item.state === 'before' ? 'no_date' : (item.state === 'today' ? 'act_date':'data-date')}`">
                                             <span>{{item.day}}</span>
                                              <i>{{item.calendar}}</i>
@@ -40,6 +41,11 @@
 
 <script>
 export default {
+    props:{
+        value:{
+           type:Number,
+        }
+    },
     data(){
         return{
           year:'', 
@@ -139,6 +145,10 @@ export default {
     }
     this.timeList=dayList;
         },
+        checkTime(item){
+            console.log(item.time)
+           this.$emit('click',item.time)
+        },
     },
 }
 </script>
@@ -151,7 +161,7 @@ export default {
 .date ol{width: 100%;height: 4rem;background: #005bac;padding: 0;margin:0;}
 .date ol li{display:block;float: left;width: 14.2857%;text-align: center;font-size: 1.6rem;color: #fff;border: none;padding: 0;line-height: 4rem;height: 4rem;}
 .date ul{margin:0;padding:0;width: 100%;display: flex;flex-direction: row;flex-wrap: wrap;}
-.date ul li{display: block;width: 14.2857%;height: 4.5rem;text-align: center;font-size: 1.6rem;background: #fff;position: relative;}
+.date ul li{display: block;width: 14.2857%;height: 4.5rem;text-align: center;font-size: 1.6rem;background: #fff;position: relative;cursor: pointer;}
 .date ul li i{font-size: 10px;position: absolute;right: 0;bottom:0.3rem;display:block;height: 15px;line-height: 15px;width: 100%;text-align: center;color: #e35925;}
 .date ul li span{display: block;width: 100%;height: 100%;line-height: 4.5rem;text-align: center;}
 .date ul .no_date{background: #fafafa;color: #999;line-height:4.5rem;}

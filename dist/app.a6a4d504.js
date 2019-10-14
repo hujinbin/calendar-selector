@@ -8940,7 +8940,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 var _default = {
+  props: {
+    value: {
+      type: Number
+    }
+  },
   data: function data() {
     return {
       year: '',
@@ -9059,6 +9065,10 @@ var _default = {
       }
 
       this.timeList = dayList;
+    },
+    checkTime: function checkTime(item) {
+      console.log(item.time);
+      this.$emit('click', item.time);
     }
   }
 };
@@ -9106,7 +9116,12 @@ exports.default = _default;
                   ? "no_date"
                   : item.state === "today"
                   ? "act_date"
-                  : "data-date")
+                  : "data-date"),
+              on: {
+                click: function($event) {
+                  return _vm.checkTime(item)
+                }
+              }
             },
             [
               _c("span", [_vm._v(_vm._s(item.day))]),
@@ -9215,7 +9230,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64003" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57079" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
