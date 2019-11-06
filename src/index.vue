@@ -52,6 +52,7 @@ export default {
           month:'',
           day:'',
           timeList:[],
+          time:'',
         }
     },
     created(){
@@ -143,10 +144,10 @@ export default {
               state:'before',  //状态
              day:x,calendar:''})
     }
-    this.timeList=dayList;
+        this.timeList=dayList;
         },
         checkTime(item){
-            console.log(item.time)
+            this.time = item.time
            this.$emit('click',item.time)
         },
     },
