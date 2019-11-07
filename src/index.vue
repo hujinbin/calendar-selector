@@ -48,19 +48,20 @@ export default {
     },
     data(){
         return{
-          year:'', 
-          month:'',
-          day:'',
-          timeList:[],
-          time:'',
+          year:'',  //当前年份
+          month:'', //当前月份
+          day:'', //当前几号
+          timeList:[], //日历数组
+          time:'', //选中的值，
+          curtimeList:[],//多选时选中的值，
         }
     },
     created(){
-           const date=new Date();            //定义一个日期对象；
+      const date=new Date();            //定义一个日期对象；
       this.year=date.getFullYear();    //获取当前年份；
       this.month=date.getMonth()+1;    //获取当前月份；
       this.day=date.getDate()<10?'0'+String(date.getDate()):date.getDate();         //获取当前日期；
-      this.init()
+      this.init();
     },
     methods:{
         // 初始化
@@ -148,7 +149,7 @@ export default {
         },
         checkTime(item){
             this.time = item.time
-           this.$emit('click',item.time)
+           this.$emit('change',item.time)
         },
     },
 }
