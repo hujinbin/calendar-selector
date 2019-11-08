@@ -1,11 +1,14 @@
 import Vue from '../node_modules/vue'
 import index from './index'
 
-Vue.component('calendar',index)
+Vue.component('Calendar',index)
 
-window.addEventListener('load',()=>{
-    new Vue({
-        el:'#app',
-        render: h => h(index)
-    })
+new Vue({
+    el:'#app',
+    data(){
+        return{
+                
+        }
+    },
 })
+

@@ -9200,15 +9200,13 @@ var _index = _interopRequireDefault(require("./index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue.default.component('calendar', _index.default);
+_vue.default.component('Calendar', _index.default);
 
-window.addEventListener('load', function () {
-  new _vue.default({
-    el: '#app',
-    render: function render(h) {
-      return h(_index.default);
-    }
-  });
+new _vue.default({
+  el: '#app',
+  data: function data() {
+    return {};
+  }
 });
 },{"../node_modules/vue":"node_modules/vue/dist/vue.runtime.esm.js","./index":"src/index.vue"}],"C:/Users/Administrator/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -9238,7 +9236,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49420" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54898" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

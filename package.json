@@ -26,5 +26,8 @@
   },
   "dependencies": {
     "vue-hot-reload-api": "^2.3.4"
+  },
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
   }
 }
