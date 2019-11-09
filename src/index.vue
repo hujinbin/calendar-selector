@@ -8,30 +8,22 @@
                                      </div>
                                      <ol><li>周日</li><li>周一</li><li>周二</li><li>周三</li><li>周四</li><li>周五</li><li>周六</li></ol>
                                      <ul>
-                                         <li v-for="(item, index) in timeList"
+                                          <li v-for="(item, index) in timeList"
+                                          :key="index"
+                                          class="data-date"
+                                          @click="checkTime(item)"
+                                          :class="`${item.state === 'before' ? 'no_date' : (item.time === time ? 'act_date':'data-date')}`">
+                                            <span>{{item.day}}</span>
+                                             <i>{{item.calendar}}</i>
+                                         </li>
+                                         <!-- <li v-for="(item, index) in timeList"
                                           :key="index"
                                           class="data-date"
                                           @click="checkTime(item)"
                                           :class="`${item.state === 'before' ? 'no_date' : (item.state === 'today' ? 'act_date':'data-date')}`">
                                             <span>{{item.day}}</span>
                                              <i>{{item.calendar}}</i>
-                                         </li>
-                                         <!-- <li class="no_date act_wk">
-                                             <span>17</span>
-                                             <i>圣诞节</i>
-                                        </li>
-                                         <li class="no_date">
-                                             <span>17</span>
-                                             <i>圣诞节</i>
-                                        </li>
-                                         <li class="data-date">
-                                             <span>17</span>
-                                             <i>圣诞节</i>
-                                        </li>
-                                         <li class="act_date">
-                                             <span>17</span>
-                                             <i>圣诞节</i>
-                                        </li> -->
+                                         </li> -->
                                      </ul>
                                  </section>
                                 </div>
@@ -77,6 +69,7 @@ export default {
            for(var i=1;i<=days;i++){
                const month=this.month-1
         var time=new Date(this.year,month,i).getTime();
+        this.time = time
         var yueSting=this.month<10 ? '0'+String(this.month):this.month
         var si=i<10?'0'+String(i):i
         let calendar=''
