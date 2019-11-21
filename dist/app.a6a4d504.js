@@ -12455,6 +12455,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   props: {
     value: {
@@ -12463,15 +12474,15 @@ var _default = {
   },
   data: function data() {
     return {
-      year: '',
+      year: "",
       //当前年份
-      month: '',
+      month: "",
       //当前月份
-      day: '',
+      day: "",
       //当前几号
       timeList: [],
       //日历数组
-      time: '',
+      time: "",
       //选中的值，
       curtimeList: [] //多选时选中的值，
 
@@ -12484,7 +12495,7 @@ var _default = {
 
     this.month = date.getMonth() + 1; //获取当前月份；
 
-    this.day = date.getDate() < 10 ? '0' + String(date.getDate()) : date.getDate(); //获取当前日期；
+    this.day = date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
 
     this.init();
   },
@@ -12492,7 +12503,7 @@ var _default = {
     // 初始化
     init: function init() {
       //    计算本月1号是周几；
-      var week = new Date(this.year + '-' + this.month + '-1').getDay(); //计算本月有多少天；
+      var week = new Date(this.year + "-" + this.month + "-1").getDay(); //计算本月有多少天；
 
       var days = new Date(this.year, this.month, 0).getDate(); //计算上月有多少天；
 
@@ -12503,38 +12514,38 @@ var _default = {
         var month = this.month - 1;
         var time = new Date(this.year, month, i).getTime();
         this.time = time;
-        var yueSting = this.month < 10 ? '0' + String(this.month) : this.month;
-        var si = i < 10 ? '0' + String(i) : i;
-        var calendar = '';
+        var yueSting = this.month < 10 ? "0" + String(this.month) : this.month;
+        var si = i < 10 ? "0" + String(i) : i;
+        var calendar = "";
 
-        if (yueSting + '-' + i == '01-01') {
-          calendar = '元旦';
-        } else if (yueSting + '-' + i == '02-14') {
-          calendar = '情人节';
-        } else if (yueSting + '-' + i == '03-08') {
-          calendar = '妇女节';
-        } else if (yueSting + '-' + i == '04-01') {
-          calendar = '愚人节';
-        } else if (yueSting + '-' + i == '05-01') {
-          calendar = '劳动节';
-        } else if (yueSting + '-' + i == '06-01') {
-          calendar = '儿童节';
-        } else if (yueSting + '-' + i == '07-01') {
-          calendar = '建党节';
-        } else if (yueSting + '-' + i == '08-01') {
-          calendar = '建军节';
-        } else if (yueSting + '-' + i == '09-10') {
-          calendar = '教师节';
-        } else if (yueSting + '-' + i == '10-01') {
-          calendar = '国庆节';
-        } else if (yueSting + '-' + i == '11-11') {
-          calendar = '光棍节';
-        } else if (yueSting + '-' + i == '12-24') {
-          calendar = '平安夜';
-        } else if (yueSting + '-' + i == '12-25') {
-          calendar = '圣诞节';
+        if (yueSting + "-" + i == "01-01") {
+          calendar = "元旦";
+        } else if (yueSting + "-" + i == "02-14") {
+          calendar = "情人节";
+        } else if (yueSting + "-" + i == "03-08") {
+          calendar = "妇女节";
+        } else if (yueSting + "-" + i == "04-01") {
+          calendar = "愚人节";
+        } else if (yueSting + "-" + i == "05-01") {
+          calendar = "劳动节";
+        } else if (yueSting + "-" + i == "06-01") {
+          calendar = "儿童节";
+        } else if (yueSting + "-" + i == "07-01") {
+          calendar = "建党节";
+        } else if (yueSting + "-" + i == "08-01") {
+          calendar = "建军节";
+        } else if (yueSting + "-" + i == "09-10") {
+          calendar = "教师节";
+        } else if (yueSting + "-" + i == "10-01") {
+          calendar = "国庆节";
+        } else if (yueSting + "-" + i == "11-11") {
+          calendar = "光棍节";
+        } else if (yueSting + "-" + i == "12-24") {
+          calendar = "平安夜";
+        } else if (yueSting + "-" + i == "12-25") {
+          calendar = "圣诞节";
         } else {
-          calendar = '';
+          calendar = "";
         } //获取当前日期的时间戳；
 
 
@@ -12542,14 +12553,14 @@ var _default = {
         var mm = new Date().getMonth();
         var dm = new Date().getDate();
         var td_time = new Date(ym, mm, dm).getTime();
-        var state = '';
+        var state = "";
 
         if (time > td_time) {
-          state = 'after';
+          state = "after";
         } else if (time == td_time) {
-          state = 'today';
+          state = "today";
         } else {
-          state = 'before'; //不可选
+          state = "before"; //不可选
         }
 
         dayList.push({
@@ -12569,10 +12580,10 @@ var _default = {
 
       for (var j = dayw - week + 1; j <= dayw; j++) {
         lastMonth.push({
-          state: 'before',
+          state: "before",
           //状态
           day: j,
-          calendar: ''
+          calendar: ""
         });
       }
 
@@ -12580,10 +12591,10 @@ var _default = {
 
       for (var x = 1; x < 36 - days - week; x++) {
         dayList.push({
-          state: 'before',
+          state: "before",
           //状态
           day: x,
-          calendar: ''
+          calendar: ""
         });
       }
 
@@ -12592,7 +12603,7 @@ var _default = {
     // 选择当前时间触发
     checkTime: function checkTime(item) {
       this.time = item.time;
-      this.$emit('change', item.time);
+      this.$emit("change", item.time);
     },
     // 上个月
     prev: function prev() {
@@ -12626,9 +12637,9 @@ exports.default = _default;
         _vm._v(" "),
         _c("div", { staticClass: "tomon" }, [
           _c("span", { staticClass: "year" }, [_vm._v(_vm._s(_vm.year))]),
-          _vm._v("年 "),
+          _vm._v("年\n        "),
           _c("span", { staticClass: "month" }, [_vm._v(_vm._s(_vm.month))]),
-          _vm._v("月")
+          _vm._v("月\n      ")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "next", on: { click: _vm.next } }, [
@@ -12678,11 +12689,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ol", [
       _c("li", [_vm._v("周日")]),
+      _vm._v(" "),
       _c("li", [_vm._v("周一")]),
+      _vm._v(" "),
       _c("li", [_vm._v("周二")]),
+      _vm._v(" "),
       _c("li", [_vm._v("周三")]),
+      _vm._v(" "),
       _c("li", [_vm._v("周四")]),
+      _vm._v(" "),
       _c("li", [_vm._v("周五")]),
+      _vm._v(" "),
       _c("li", [_vm._v("周六")])
     ])
   }
