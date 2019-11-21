@@ -2,9 +2,9 @@
                              <div class="box">
                                  <section class="date">
                                      <div class="head">
-                                         <div class="prev">上一月</div>
+                                         <div class="prev" @click="prev">上一月</div>
                                          <div class="tomon"><span class="year">{{year}}</span>年 <span class="month">{{month}}</span>月</div>
-                                         <div class="next">下一月</div>
+                                         <div class="next" @click="next">下一月</div>
                                      </div>
                                      <ol><li>周日</li><li>周一</li><li>周二</li><li>周三</li><li>周四</li><li>周五</li><li>周六</li></ol>
                                      <ul>
@@ -140,10 +140,19 @@ export default {
     }
         this.timeList=dayList;
         },
+        // 选择当前时间触发
         checkTime(item){
             this.time = item.time
            this.$emit('change',item.time)
         },
+         // 上个月
+    prev(){
+        console.log(this.month)
+    },
+    // 下个月
+    next(){
+        console.log(this.month)
+    },
     },
 }
 </script>

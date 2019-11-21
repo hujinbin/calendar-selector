@@ -1,4 +1,4 @@
-import Vue from '../node_modules/vue'
+import Vue from 'vue'
 import index from './index'
 
 Vue.component('Calendar',index)
