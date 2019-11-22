@@ -162,10 +162,22 @@ export default {
     // 上个月
     prev() {
       console.log(this.month);
+      if(this.month==12){
+        this.year++;
+        this.month=1;
+      }else{
+        this.month++;
+      }
     },
     // 下个月
     next() {
       console.log(this.month);
+      if(m==1){
+        this.year--;
+        this.month=12;
+      }else{
+        this.month--;
+      }
     }
   }
 };
