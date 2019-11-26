@@ -3,7 +3,7 @@
     <section class="date">
       <div class="head">
         <div class="prev" @click="prev">上一月</div>
-        <div class="tomon">
+        <div class="tomon" @click="currentMonth">
           <span class="year">{{year}}</span>年
           <span class="month">{{month}}</span>月
         </div>
@@ -63,8 +63,9 @@ export default {
     const date = new Date(); //定义一个日期对象；
     this.year = date.getFullYear(); //获取当前年份；
     this.month = date.getMonth() + 1; //获取当前月份；
-    this.day =
-      date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
+    this.day = date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
+    const time = new Date(this.year, this.month-1, this.day).getTime()
+    this.time = this.value ? this.value : time;
     this.init();
   },
   methods: {
@@ -80,8 +81,7 @@ export default {
       let dayList = [];
       for (var i = 1; i <= days; i++) {
         const month = this.month - 1;
-        var time = new Date(this.year, month, i).getTime();
-        this.time = time;
+        var time = new Date(this.year, month, i).getTime(); //获取当前时间时间戳
         var yueSting = this.month < 10 ? "0" + String(this.month) : this.month;
         var si = i < 10 ? "0" + String(i) : i;
         let calendar = "";
@@ -161,24 +161,32 @@ export default {
     },
     // 上个月
     prev() {
-      console.log(this.month);
-      if(this.month==12){
-        this.year++;
-        this.month=1;
-      }else{
-        this.month++;
-      }
-    },
-    // 下个月
-    next() {
-      console.log(this.month);
-      if(m==1){
+      if(this.month==1){
         this.year--;
         this.month=12;
       }else{
         this.month--;
       }
-    }
+      this.init();
+    },
+    // 下个月
+    next() {
+       if(this.month==12){
+        this.year++;
+        this.month=1;
+      }else{
+        this.month++;
+      }
+      this.init();
+    },
+    // 返回本月
+    currentMonth(){
+       const date = new Date(); //定义一个日期对象；
+       this.year = date.getFullYear(); //获取当前年份；
+      this.month = date.getMonth() + 1; //获取当前月份；
+      this.day = date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
+      this.init();
+    },
   }
 };
 </script>

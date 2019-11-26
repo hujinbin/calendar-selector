@@ -12497,6 +12497,8 @@ var _default = {
 
     this.day = date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
 
+    var time = new Date(this.year, this.month - 1, this.day).getTime();
+    this.time = this.value ? this.value : time;
     this.init();
   },
   methods: {
@@ -12512,8 +12514,8 @@ var _default = {
 
       for (var i = 1; i <= days; i++) {
         var month = this.month - 1;
-        var time = new Date(this.year, month, i).getTime();
-        this.time = time;
+        var time = new Date(this.year, month, i).getTime(); //获取当前时间时间戳
+
         var yueSting = this.month < 10 ? "0" + String(this.month) : this.month;
         var si = i < 10 ? "0" + String(i) : i;
         var calendar = "";
@@ -12607,11 +12609,37 @@ var _default = {
     },
     // 上个月
     prev: function prev() {
-      console.log(this.month);
+      if (this.month == 1) {
+        this.year--;
+        this.month = 12;
+      } else {
+        this.month--;
+      }
+
+      this.init();
     },
     // 下个月
     next: function next() {
-      console.log(this.month);
+      if (this.month == 12) {
+        this.year++;
+        this.month = 1;
+      } else {
+        this.month++;
+      }
+
+      this.init();
+    },
+    // 返回本月
+    currentMonth: function currentMonth() {
+      var date = new Date(); //定义一个日期对象；
+
+      this.year = date.getFullYear(); //获取当前年份；
+
+      this.month = date.getMonth() + 1; //获取当前月份；
+
+      this.day = date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
+
+      this.init();
     }
   }
 };
@@ -12635,7 +12663,7 @@ exports.default = _default;
           _vm._v("上一月")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "tomon" }, [
+        _c("div", { staticClass: "tomon", on: { click: _vm.currentMonth } }, [
           _c("span", { staticClass: "year" }, [_vm._v(_vm._s(_vm.year))]),
           _vm._v("年\n        "),
           _c("span", { staticClass: "month" }, [_vm._v(_vm._s(_vm.month))]),
@@ -12751,6 +12779,11 @@ new _vue.default({
   el: '#app',
   data: function data() {
     return {};
+  },
+  methods: {
+    change: function change(value) {
+      console.log(value);
+    }
   }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./index":"src/index.vue"}],"C:/Users/Administrator/AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -12781,7 +12814,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64336" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55495" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -10,5 +10,10 @@ new Vue({
                 
         }
     },
+    methods:{
+        change(value){
+            console.log(value)
+        },
+    }
 })
 
