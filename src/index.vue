@@ -219,16 +219,19 @@ function e2c() {
 
 function GetcDateString() {
   var tmp = "";
-  if (cMonth < 1) {
-    tmp += "(闰)";
-    tmp += monString.charAt(-cMonth - 1);
+  if (cDay === 1) {
+    if (cMonth < 1) {
+      tmp += "(闰)";
+      tmp += monString.charAt(-cMonth - 1);
+    } else {
+      tmp += monString.charAt(cMonth - 1);
+    }
+    tmp += "月";
   } else {
-    tmp += monString.charAt(cMonth - 1);
-  }
-  tmp += "月";
-  tmp += cDay < 11 ? "初" : cDay < 20 ? "十" : cDay < 30 ? "廿" : "三十";
-  if (cDay % 10 != 0 || cDay == 10) {
-    tmp += numString.charAt((cDay - 1) % 10);
+    tmp += cDay < 11 ? "初" : cDay < 20 ? "十" : cDay < 30 ? "廿" : "三十";
+    if (cDay % 10 != 0 || cDay == 10) {
+      tmp += numString.charAt((cDay - 1) % 10);
+    }
   }
   return tmp;
 }
@@ -239,7 +242,8 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
   } else {
     solarMonth = parseInt(solarMonth) > 0 ? solarMonth - 1 : 11;
     e2c(solarYear, solarMonth, solarDay);
-    const yueSting = solarMonth < 10 ? "0" + String(solarMonth) : solarMonth;
+    const month = solarMonth + 1;
+    const yueSting = month < 10 ? "0" + String(month) : month;
     const si = solarDay < 10 ? "0" + String(solarDay) : solarDay;
     let calendar = "";
     if (yueSting + "-" + si == "01-01") {
@@ -362,7 +366,7 @@ export default {
           state: "before", //状态
           day: x,
           calendar: calendar,
-          time: time,
+          time: time
         });
       }
       this.timeList = dayList;

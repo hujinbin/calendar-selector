@@ -12544,18 +12544,21 @@ function e2c() {
 function GetcDateString() {
   var tmp = "";
 
-  if (cMonth < 1) {
-    tmp += "(闰)";
-    tmp += monString.charAt(-cMonth - 1);
+  if (cDay === 1) {
+    if (cMonth < 1) {
+      tmp += "(闰)";
+      tmp += monString.charAt(-cMonth - 1);
+    } else {
+      tmp += monString.charAt(cMonth - 1);
+    }
+
+    tmp += "月";
   } else {
-    tmp += monString.charAt(cMonth - 1);
-  }
+    tmp += cDay < 11 ? "初" : cDay < 20 ? "十" : cDay < 30 ? "廿" : "三十";
 
-  tmp += "月";
-  tmp += cDay < 11 ? "初" : cDay < 20 ? "十" : cDay < 30 ? "廿" : "三十";
-
-  if (cDay % 10 != 0 || cDay == 10) {
-    tmp += numString.charAt((cDay - 1) % 10);
+    if (cDay % 10 != 0 || cDay == 10) {
+      tmp += numString.charAt((cDay - 1) % 10);
+    }
   }
 
   return tmp;
@@ -12567,7 +12570,8 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
   } else {
     solarMonth = parseInt(solarMonth) > 0 ? solarMonth - 1 : 11;
     e2c(solarYear, solarMonth, solarDay);
-    var yueSting = solarMonth < 10 ? "0" + String(solarMonth) : solarMonth;
+    var month = solarMonth + 1;
+    var yueSting = month < 10 ? "0" + String(month) : month;
     var si = solarDay < 10 ? "0" + String(solarDay) : solarDay;
     var calendar = "";
 
@@ -12941,7 +12945,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51118" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58507" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
