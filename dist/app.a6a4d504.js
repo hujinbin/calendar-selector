@@ -12567,7 +12567,41 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
   } else {
     solarMonth = parseInt(solarMonth) > 0 ? solarMonth - 1 : 11;
     e2c(solarYear, solarMonth, solarDay);
-    return GetcDateString();
+    var yueSting = solarMonth < 10 ? "0" + String(solarMonth) : solarMonth;
+    var si = solarDay < 10 ? "0" + String(solarDay) : solarDay;
+    var calendar = "";
+
+    if (yueSting + "-" + si == "01-01") {
+      calendar = "元旦";
+    } else if (yueSting + "-" + si == "02-14") {
+      calendar = "情人节";
+    } else if (yueSting + "-" + si == "03-08") {
+      calendar = "妇女节";
+    } else if (yueSting + "-" + si == "04-01") {
+      calendar = "愚人节";
+    } else if (yueSting + "-" + si == "05-01") {
+      calendar = "劳动节";
+    } else if (yueSting + "-" + si == "06-01") {
+      calendar = "儿童节";
+    } else if (yueSting + "-" + si == "07-01") {
+      calendar = "建党节";
+    } else if (yueSting + "-" + si == "08-01") {
+      calendar = "建军节";
+    } else if (yueSting + "-" + si == "09-10") {
+      calendar = "教师节";
+    } else if (yueSting + "-" + si == "10-01") {
+      calendar = "国庆节";
+    } else if (yueSting + "-" + si == "11-11") {
+      calendar = "光棍节";
+    } else if (yueSting + "-" + si == "12-24") {
+      calendar = "平安夜";
+    } else if (yueSting + "-" + si == "12-25") {
+      calendar = "圣诞节";
+    } else {
+      calendar = GetcDateString();
+    }
+
+    return calendar;
   }
 }
 
@@ -12622,39 +12656,7 @@ var _default = {
         var time = new Date(this.year, month, i).getTime(); //获取当前时间时间戳
 
         var yueSting = this.month < 10 ? "0" + String(this.month) : this.month;
-        var si = i < 10 ? "0" + String(i) : i;
-        var calendar = "";
-
-        if (yueSting + "-" + i == "01-01") {
-          calendar = "元旦";
-        } else if (yueSting + "-" + i == "02-14") {
-          calendar = "情人节";
-        } else if (yueSting + "-" + i == "03-08") {
-          calendar = "妇女节";
-        } else if (yueSting + "-" + i == "04-01") {
-          calendar = "愚人节";
-        } else if (yueSting + "-" + i == "05-01") {
-          calendar = "劳动节";
-        } else if (yueSting + "-" + i == "06-01") {
-          calendar = "儿童节";
-        } else if (yueSting + "-" + i == "07-01") {
-          calendar = "建党节";
-        } else if (yueSting + "-" + i == "08-01") {
-          calendar = "建军节";
-        } else if (yueSting + "-" + i == "09-10") {
-          calendar = "教师节";
-        } else if (yueSting + "-" + i == "10-01") {
-          calendar = "国庆节";
-        } else if (yueSting + "-" + i == "11-11") {
-          calendar = "光棍节";
-        } else if (yueSting + "-" + i == "12-24") {
-          calendar = "平安夜";
-        } else if (yueSting + "-" + i == "12-25") {
-          calendar = "圣诞节";
-        } else {
-          calendar = GetLunarDay(this.year, yueSting, i);
-        } //获取当前日期的时间戳；
-
+        var calendar = GetLunarDay(this.year, yueSting, i); //获取当前日期的时间戳；
 
         var ym = new Date().getFullYear();
         var mm = new Date().getMonth();
@@ -12686,22 +12688,40 @@ var _default = {
       var lastMonth = [];
 
       for (var j = dayw - week + 1; j <= dayw; j++) {
+        var _month = this.month - 2;
+
+        var time = new Date(this.year, _month, i).getTime(); //获取当前时间时间戳
+
+        var lMonth = this.month - 1;
+        var yueSting = lMonth < 10 ? "0" + String(lMonth) : lMonth;
+
+        var _calendar = GetLunarDay(this.year, yueSting, j);
+
         lastMonth.push({
           state: "before",
           //状态
           day: j,
-          calendar: ""
+          calendar: _calendar,
+          time: time
         });
       }
 
       dayList = [].concat(lastMonth, _toConsumableArray(dayList)); //计算后面空格键；
 
       for (var x = 1; x < 36 - days - week; x++) {
+        var time = new Date(this.year, this.month, x).getTime(); //获取当前时间时间戳
+
+        var Month = this.month + 1;
+        var yueSting = Month < 10 ? "0" + String(Month) : Month;
+
+        var _calendar2 = GetLunarDay(this.year, yueSting, x);
+
         dayList.push({
           state: "before",
           //状态
           day: x,
-          calendar: ""
+          calendar: _calendar2,
+          time: time
         });
       }
 
@@ -12709,8 +12729,10 @@ var _default = {
     },
     // 选择当前时间触发
     checkTime: function checkTime(item) {
-      this.time = item.time;
-      this.$emit("change", item.time);
+      if (item.state !== "before") {
+        this.time = item.time;
+        this.$emit("change", item.time);
+      }
     },
     // 上个月
     prev: function prev() {
@@ -12919,7 +12941,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50925" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51118" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

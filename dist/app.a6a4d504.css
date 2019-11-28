@@ -83,6 +83,7 @@
   background: #fafafa;
   color: #999;
   line-height: 4.5rem;
+  cursor: default;
 }
 .date ul .act_wk[data-v-891830] {
   color: #e35925;
