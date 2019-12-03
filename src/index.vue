@@ -24,7 +24,11 @@
           :key="index"
           class="data-date"
           @click="checkTime(item)"
-          :class="`${item.state === 'before' ? 'no_date' : (item.time === time ? 'act_date':'data-date')}`"
+           :class="[
+            {'no_date':item.state === 'before'},
+            {'act_date':item.time === time},
+            {'later_date':item.state === 'later'},
+           ]"
         >
           <span>{{item.day}}</span>
           <i>{{item.calendar}}</i>
@@ -246,6 +250,7 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
     const yueSting = month < 10 ? "0" + String(month) : month;
     const si = solarDay < 10 ? "0" + String(solarDay) : solarDay;
     let calendar = "";
+    // 取出所有节日
     if (yueSting + "-" + si == "01-01") {
       calendar = "元旦";
     } else if (yueSting + "-" + si == "02-14") {
@@ -363,7 +368,7 @@ export default {
         var yueSting = Month < 10 ? "0" + String(Month) : Month;
         const calendar = GetLunarDay(this.year, yueSting, x);
         dayList.push({
-          state: "before", //状态
+          state: "later", //状态
           day: x,
           calendar: calendar,
           time: time
@@ -499,11 +504,19 @@ export default {
   line-height: 4.5rem;
   cursor: default;
 }
+.date ul .later_date {
+  background: #fafafa;
+  color: #999;
+  line-height: 4.5rem;
+}
 .date ul .act_wk {
   color: #e35925;
 }
 .date ul .act_date {
   background: #ff6600;
+  color: #fff;
+}
+.date ul .act_date i{
   color: #fff;
 }
 .date ul .act_ds {

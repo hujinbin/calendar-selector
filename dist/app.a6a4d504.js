@@ -12466,6 +12466,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
 //定义全局变量
 var CalendarData = new Array(100);
 var madd = new Array(12);
@@ -12573,7 +12577,7 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
     var month = solarMonth + 1;
     var yueSting = month < 10 ? "0" + String(month) : month;
     var si = solarDay < 10 ? "0" + String(solarDay) : solarDay;
-    var calendar = "";
+    var calendar = ""; // 取出所有节日
 
     if (yueSting + "-" + si == "01-01") {
       calendar = "元旦";
@@ -12721,7 +12725,7 @@ var _default = {
         var _calendar2 = GetLunarDay(this.year, yueSting, x);
 
         dayList.push({
-          state: "before",
+          state: "later",
           //状态
           day: x,
           calendar: _calendar2,
@@ -12816,13 +12820,11 @@ exports.default = _default;
             {
               key: index,
               staticClass: "data-date",
-              class:
-                "" +
-                (item.state === "before"
-                  ? "no_date"
-                  : item.time === _vm.time
-                  ? "act_date"
-                  : "data-date"),
+              class: [
+                { no_date: item.state === "before" },
+                { act_date: item.time === _vm.time },
+                { later_date: item.state === "later" }
+              ],
               on: {
                 click: function($event) {
                   return _vm.checkTime(item)
@@ -12945,7 +12947,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58507" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65355" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

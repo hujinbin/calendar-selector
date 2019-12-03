@@ -85,11 +85,19 @@
   line-height: 4.5rem;
   cursor: default;
 }
+.date ul .later_date[data-v-891830] {
+  background: #fafafa;
+  color: #999;
+  line-height: 4.5rem;
+}
 .date ul .act_wk[data-v-891830] {
   color: #e35925;
 }
 .date ul .act_date[data-v-891830] {
   background: #ff6600;
+  color: #fff;
+}
+.date ul .act_date i[data-v-891830]{
   color: #fff;
 }
 .date ul .act_ds[data-v-891830] {
