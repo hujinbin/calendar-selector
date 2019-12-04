@@ -12468,8 +12468,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
-//
 //定义全局变量
 var CalendarData = new Array(100);
 var madd = new Array(12);
@@ -12670,6 +12668,7 @@ var _default = {
         var mm = new Date().getMonth();
         var dm = new Date().getDate();
         var td_time = new Date(ym, mm, dm).getTime();
+        var td_week = new Date(ym + "-" + mm + "-" + dm).getDay();
         var state = "";
 
         if (time > td_time) {
@@ -12687,7 +12686,9 @@ var _default = {
           //时间戳
           state: state,
           //状态
-          calendar: calendar //节日农历
+          calendar: calendar,
+          //节日农历
+          week: td_week //周几
 
         });
       } //计算前面空格键；
@@ -12791,56 +12792,54 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "box" }, [
-    _c("section", { staticClass: "date" }, [
-      _c("div", { staticClass: "head" }, [
-        _c("div", { staticClass: "prev", on: { click: _vm.prev } }, [
-          _vm._v("上一月")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tomon", on: { click: _vm.currentMonth } }, [
-          _c("span", { staticClass: "year" }, [_vm._v(_vm._s(_vm.year))]),
-          _vm._v("年\n        "),
-          _c("span", { staticClass: "month" }, [_vm._v(_vm._s(_vm.month))]),
-          _vm._v("月\n      ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "next", on: { click: _vm.next } }, [
-          _vm._v("下一月")
-        ])
+  return _c("section", { staticClass: "date" }, [
+    _c("div", { staticClass: "head" }, [
+      _c("div", { staticClass: "prev", on: { click: _vm.prev } }, [
+        _vm._v("上一月")
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "tomon", on: { click: _vm.currentMonth } }, [
+        _c("span", { staticClass: "year" }, [_vm._v(_vm._s(_vm.year))]),
+        _vm._v("年\n        "),
+        _c("span", { staticClass: "month" }, [_vm._v(_vm._s(_vm.month))]),
+        _vm._v("月\n      ")
+      ]),
       _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.timeList, function(item, index) {
-          return _c(
-            "li",
-            {
-              key: index,
-              staticClass: "data-date",
-              class: [
-                { no_date: item.state === "before" },
-                { act_date: item.time === _vm.time },
-                { later_date: item.state === "later" }
-              ],
-              on: {
-                click: function($event) {
-                  return _vm.checkTime(item)
-                }
+      _c("div", { staticClass: "next", on: { click: _vm.next } }, [
+        _vm._v("下一月")
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.timeList, function(item, index) {
+        return _c(
+          "li",
+          {
+            key: index,
+            staticClass: "data-date",
+            class: [
+              { no_date: item.state === "before" },
+              { act_date: item.time === _vm.time },
+              { later_date: item.state === "later" }
+            ],
+            on: {
+              click: function($event) {
+                return _vm.checkTime(item)
               }
-            },
-            [
-              _c("span", [_vm._v(_vm._s(item.day))]),
-              _vm._v(" "),
-              _c("i", [_vm._v(_vm._s(item.calendar))])
-            ]
-          )
-        }),
-        0
-      )
-    ])
+            }
+          },
+          [
+            _c("span", [_vm._v(_vm._s(item.day))]),
+            _vm._v(" "),
+            _c("i", [_vm._v(_vm._s(item.calendar))])
+          ]
+        )
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = [
@@ -12947,7 +12946,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65355" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57476" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

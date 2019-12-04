@@ -1,14 +1,14 @@
-.box[data-v-891830] {
+.date[data-v-891830] {
   width: 100%;
   height: 100%;
 }
-.head[data-v-891830] {
+.date .head[data-v-891830] {
   width: 100%;
   height: 4.5rem;
   cursor: pointer;
 }
-.head .prev[data-v-891830],
-.head .next[data-v-891830] {
+.date .head .prev[data-v-891830],
+.date .head .next[data-v-891830] {
   width: 20%;
   text-align: center;
   float: left;
@@ -97,10 +97,11 @@
   background: #ff6600;
   color: #fff;
 }
-.date ul .act_date i[data-v-891830]{
+.date ul .act_date i[data-v-891830] {
   color: #fff;
 }
 .date ul .act_ds[data-v-891830] {
   background: #005bac;
   color: #fff;
 }
+

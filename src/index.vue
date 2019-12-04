@@ -1,6 +1,5 @@
 <template>
-  <div class="box">
-    <section class="date">
+  <section class="date">
       <div class="head">
         <div class="prev" @click="prev">上一月</div>
         <div class="tomon" @click="currentMonth">
@@ -43,7 +42,6 @@
         </li>-->
       </ul>
     </section>
-  </div>
 </template>
 
 <script>
@@ -330,6 +328,7 @@ export default {
         const mm = new Date().getMonth();
         const dm = new Date().getDate();
         const td_time = new Date(ym, mm, dm).getTime();
+        const td_week = new Date(ym + "-" + mm + "-" + dm).getDay();
         let state = "";
         if (time > td_time) {
           state = "after";
@@ -342,7 +341,8 @@ export default {
           day: i, //展示日子
           time: time, //时间戳
           state: state, //状态
-          calendar: calendar //节日农历
+          calendar: calendar, //节日农历
+          week: td_week, //周几
         });
       }
       //计算前面空格键；
@@ -416,23 +416,22 @@ export default {
 };
 </script>
 
-<style scoped>
-.box {
+<style lang="less" scoped>
+.date {
   width: 100%;
   height: 100%;
-}
-.head {
-  width: 100%;
-  height: 4.5rem;
-  cursor: pointer;
-}
-.head .prev,
-.head .next {
-  width: 20%;
-  text-align: center;
-  float: left;
-  line-height: 4.5rem;
-  font-size: 1.6rem;
+  .head {
+    width: 100%;
+    height: 4.5rem;
+    cursor: pointer;
+    .prev,.next {
+      width: 20%;
+      text-align: center;
+      float: left;
+      line-height: 4.5rem;
+      font-size: 1.6rem;
+    }
+  }
 }
 .head .tomon {
   width: 60%;
