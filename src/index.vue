@@ -282,6 +282,7 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
   }
 }
 export default {
+  name:'Calendar',
   props: {
     value: {
       type: Number
