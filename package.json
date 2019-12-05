@@ -1,11 +1,11 @@
 {
   "name": "calendar-selector",
   "version": "0.0.1",
-  "description": "一款用于预打卡得日历\u001b[D\u001b[D\u001b[D\u001b[Dvue日历插件",
-  "main": "dist/index.js",
+  "description": "一款用于预打卡得日历插件",
+  "main": "index.js",
   "scripts": {
     "dev": "parcel index.html --no-cache",
-    "build": "parcel build index.html --no-cache",
+    "build": "parcel build index.js --no-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
