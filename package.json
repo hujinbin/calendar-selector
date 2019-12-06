@@ -1,6 +1,6 @@
 {
   "name": "calendar-selector",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "一款用于打卡得日历插件",
   "main": "./dist/index.js",
   "scripts": {
