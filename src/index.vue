@@ -27,6 +27,7 @@
             {'no_date':item.state === 'before'},
             {'act_date':item.time === time},
             {'later_date':item.state === 'later'},
+            {'act_wk':item.week === 6 || item.week === 0},
            ]"
         >
           <span>{{item.day}}</span>
@@ -329,7 +330,6 @@ export default {
         const mm = new Date().getMonth();
         const dm = new Date().getDate();
         const td_time = new Date(ym, mm, dm).getTime();
-        const td_week = new Date(ym + "-" + mm + "-" + dm).getDay();
         let state = "";
         if (time > td_time) {
           state = "after";
@@ -338,6 +338,7 @@ export default {
         } else {
           state = "before"; //不可选
         }
+        const td_week = new Date(ym + "-" + mm + "-" + i).getDay();
         dayList.push({
           day: i, //展示日子
           time: time, //时间戳
@@ -354,11 +355,13 @@ export default {
         const lMonth = this.month - 1;
         var yueSting = lMonth < 10 ? "0" + String(lMonth) : lMonth;
         const calendar = GetLunarDay(this.year, yueSting, j);
+        const td_week = new Date(this.year + "-" + lMonth + "-" + j).getDay();
         lastMonth.push({
           state: "before", //状态
           day: j,
           calendar: calendar,
-          time: time
+          time: time,
+          week: td_week, //周几
         });
       }
       dayList = [...lastMonth, ...dayList];
@@ -368,11 +371,13 @@ export default {
         const Month = this.month + 1;
         var yueSting = Month < 10 ? "0" + String(Month) : Month;
         const calendar = GetLunarDay(this.year, yueSting, x);
+        const td_week = new Date(this.year + "-" + Month + "-" + x).getDay();
         dayList.push({
           state: "later", //状态
           day: x,
           calendar: calendar,
-          time: time
+          time: time,
+          week: td_week, //周几
         });
       }
       this.timeList = dayList;
@@ -409,8 +414,7 @@ export default {
       const date = new Date(); //定义一个日期对象；
       this.year = date.getFullYear(); //获取当前年份；
       this.month = date.getMonth() + 1; //获取当前月份；
-      this.day =
-        date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
+      this.day = date.getDate() < 10 ? "0" + String(date.getDate()) : date.getDate(); //获取当前日期；
       this.init();
     }
   }

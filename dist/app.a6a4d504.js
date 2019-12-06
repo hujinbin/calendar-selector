@@ -12468,6 +12468,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 //定义全局变量
 var CalendarData = new Array(100);
 var madd = new Array(12);
@@ -12612,6 +12613,7 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
 }
 
 var _default = {
+  name: 'Calendar',
   props: {
     value: {
       type: Number
@@ -12668,7 +12670,6 @@ var _default = {
         var mm = new Date().getMonth();
         var dm = new Date().getDate();
         var td_time = new Date(ym, mm, dm).getTime();
-        var td_week = new Date(ym + "-" + mm + "-" + dm).getDay();
         var state = "";
 
         if (time > td_time) {
@@ -12679,6 +12680,7 @@ var _default = {
           state = "before"; //不可选
         }
 
+        var td_week = new Date(ym + "-" + mm + "-" + i).getDay();
         dayList.push({
           day: i,
           //展示日子
@@ -12706,12 +12708,16 @@ var _default = {
 
         var _calendar = GetLunarDay(this.year, yueSting, j);
 
+        var _td_week = new Date(this.year + "-" + lMonth + "-" + j).getDay();
+
         lastMonth.push({
           state: "before",
           //状态
           day: j,
           calendar: _calendar,
-          time: time
+          time: time,
+          week: _td_week //周几
+
         });
       }
 
@@ -12725,12 +12731,16 @@ var _default = {
 
         var _calendar2 = GetLunarDay(this.year, yueSting, x);
 
+        var _td_week2 = new Date(this.year + "-" + Month + "-" + x).getDay();
+
         dayList.push({
           state: "later",
           //状态
           day: x,
           calendar: _calendar2,
-          time: time
+          time: time,
+          week: _td_week2 //周几
+
         });
       }
 
@@ -12823,7 +12833,8 @@ exports.default = _default;
             class: [
               { no_date: item.state === "before" },
               { act_date: item.time === _vm.time },
-              { later_date: item.state === "later" }
+              { later_date: item.state === "later" },
+              { act_wk: item.week === 6 || item.week === 0 }
             ],
             on: {
               click: function($event) {
@@ -12946,7 +12957,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57476" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57818" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
