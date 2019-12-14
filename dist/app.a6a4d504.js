@@ -12542,7 +12542,8 @@ function e2c() {
       cMonth--;
     }
   }
-}
+} // 获取农历时间
+
 
 function GetcDateString() {
   var tmp = "";
@@ -12565,7 +12566,8 @@ function GetcDateString() {
   }
 
   return tmp;
-}
+} // 获取农历和节日方法
+
 
 function GetLunarDay(solarYear, solarMonth, solarDay) {
   if (solarYear < 1921 || solarYear > 2020) {
@@ -12610,13 +12612,41 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
 
     return calendar;
   }
+} // 获取星期几
+
+
+function GetWeek(Year, month, day) {
+  var ym = Year;
+  var mm = month;
+  var dm = day;
+
+  if (month <= 0) {
+    ym--;
+    mm = 12;
+  } else if (month >= 13) {
+    ym++;
+    mm = 1;
+  }
+
+  var week = new Date(ym + "-" + mm + "-" + day).getDay();
+  return week;
 }
 
 var _default = {
   name: 'Calendar',
   props: {
     value: {
-      type: Number
+      type: Number // 默认选中时间戳
+
+    },
+    startDate: Number,
+    //起始时间
+    endDate: Number,
+    //结束时间
+    multiple: {
+      // 多选
+      type: Boolean,
+      default: false
     }
   },
   data: function data() {
@@ -12680,7 +12710,7 @@ var _default = {
           state = "before"; //不可选
         }
 
-        var td_week = new Date(ym + "-" + mm + "-" + i).getDay();
+        var td_week = GetWeek(this.year, this.month, i);
         dayList.push({
           day: i,
           //展示日子
@@ -12708,7 +12738,7 @@ var _default = {
 
         var _calendar = GetLunarDay(this.year, yueSting, j);
 
-        var _td_week = new Date(this.year + "-" + lMonth + "-" + j).getDay();
+        var _td_week = GetWeek(this.year, this.month - 1, j);
 
         lastMonth.push({
           state: "before",
@@ -12731,7 +12761,7 @@ var _default = {
 
         var _calendar2 = GetLunarDay(this.year, yueSting, x);
 
-        var _td_week2 = new Date(this.year + "-" + Month + "-" + x).getDay();
+        var _td_week2 = GetWeek(this.year, this.month + 1, x);
 
         dayList.push({
           state: "later",
@@ -12957,7 +12987,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56695" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61794" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

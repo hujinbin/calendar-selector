@@ -219,7 +219,7 @@ function e2c() {
     }
   }
 }
-
+// 获取农历时间
 function GetcDateString() {
   var tmp = "";
   if (cDay === 1) {
@@ -239,6 +239,7 @@ function GetcDateString() {
   return tmp;
 }
 
+// 获取农历和节日方法
 function GetLunarDay(solarYear, solarMonth, solarDay) {
   if (solarYear < 1921 || solarYear > 2020) {
     return "";
@@ -282,11 +283,33 @@ function GetLunarDay(solarYear, solarMonth, solarDay) {
     return calendar;
   }
 }
+// 获取星期几
+function GetWeek(Year, month, day) {
+    let ym = Year;
+    let mm = month;
+    let dm = day;
+    if (month <= 0) {
+        ym--;
+        mm = 12;
+    } else if(month >= 13) {
+        ym++;
+        mm = 1;
+    }
+    const week = new Date(ym + "-" + mm + "-" + day).getDay();
+    return week
+}
+
 export default {
   name:'Calendar',
   props: {
     value: {
-      type: Number
+      type: Number // 默认选中时间戳
+    },
+    startDate:Number, //起始时间
+    endDate:Number,  //结束时间
+    multiple:{  // 多选
+      type:Boolean,
+      default:false,
     }
   },
   data() {
@@ -338,7 +361,7 @@ export default {
         } else {
           state = "before"; //不可选
         }
-        const td_week = new Date(ym + "-" + mm + "-" + i).getDay();
+        const td_week = GetWeek(this.year, this.month,i);
         dayList.push({
           day: i, //展示日子
           time: time, //时间戳
@@ -355,7 +378,7 @@ export default {
         const lMonth = this.month - 1;
         var yueSting = lMonth < 10 ? "0" + String(lMonth) : lMonth;
         const calendar = GetLunarDay(this.year, yueSting, j);
-        const td_week = new Date(this.year + "-" + lMonth + "-" + j).getDay();
+        const td_week = GetWeek(this.year,(this.month-1), j);
         lastMonth.push({
           state: "before", //状态
           day: j,
@@ -371,7 +394,7 @@ export default {
         const Month = this.month + 1;
         var yueSting = Month < 10 ? "0" + String(Month) : Month;
         const calendar = GetLunarDay(this.year, yueSting, x);
-        const td_week = new Date(this.year + "-" + Month + "-" + x).getDay();
+        const td_week = GetWeek(this.year,(this.month+1),x);
         dayList.push({
           state: "later", //状态
           day: x,
