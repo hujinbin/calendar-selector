@@ -1,3 +1,10 @@
 import Calendar from './src/index'
 
-export {Calendar}
+const install = Vue => {
+    Vue.component(Calendar.name, Calendar)
+}
+
+export default {
+    install,
+    Calendar,
+}
