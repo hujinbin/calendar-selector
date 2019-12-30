@@ -3,6 +3,8 @@
   "version": "0.0.3",
   "description": "一款用于打卡得日历插件",
   "main": "./dist/index.js",
+  "css_path": "./dist/index.css",
+  "private": false,
   "scripts": {
     "dev": "parcel index.html --no-cache",
     "build": "parcel build index.js --no-cache",
