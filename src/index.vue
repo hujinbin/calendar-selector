@@ -26,6 +26,7 @@
            :class="[
             {'no_date':item.state === 'before'},
             {'act_date':item.time === time},
+            {'act_date':curtimeList.includes(item.time)},
             {'later_date':item.state === 'later'},
             {'act_wk':item.week === 6 || item.week === 0},
            ]"
@@ -411,7 +412,7 @@ export default {
         if(this.multiple){
           let curtimeList = this.curtimeList
           const index = curtimeList.indexOf(item.time)
-          if(index >-1){
+          if(index === -1){
             curtimeList.push(item.time)
           }else{
             curtimeList.splice(index,1)

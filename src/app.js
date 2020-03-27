@@ -11,8 +11,13 @@ new Vue({
         }
     },
     methods:{
+        // 时间单个选择
         change(value){
             console.log(value)
+        },
+        // 时间多选
+        multChange(){
+
         },
     }
 })
