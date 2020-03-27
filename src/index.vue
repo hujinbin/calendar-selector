@@ -408,8 +408,20 @@ export default {
     // 选择当前时间触发
     checkTime(item) {
       if (item.state !== "before") {
-        this.time = item.time;
-        this.$emit("change", item.time);
+        if(this.multiple){
+          let curtimeList = this.curtimeList
+          const index = curtimeList.indexOf(item.time)
+          if(index >-1){
+            curtimeList.push(item.time)
+          }else{
+            curtimeList.splice(index,1)
+          }
+          this.curtimeList = curtimeList
+          this.$emit("change", curtimeList);
+        }else{
+          this.time = item.time;
+          this.$emit("change", item.time);
+        }
       }
     },
     // 上个月
