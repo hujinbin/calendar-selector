@@ -2,10 +2,13 @@ import Vue from 'vue'
 import calendar from '../src/index'
 
 describe('calendar.vue', () => {
+  it('calendar是否存在',()=>{
+    expect(calendar).to.be.ok;
+  })
   it('should render correct contents', () => {
     const Constructor = Vue.extend(calendar)
     const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .to.equal('Welcome to Your Vue.js App')
+    // expect(vm.$el.querySelector('.hello h1').textContent)
+    //   .to.equal('Welcome to Your Vue.js App')
   })
 })
