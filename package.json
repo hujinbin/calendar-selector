@@ -23,6 +23,9 @@
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
     "cssnano": "^4.1.10",
+    "jasmine-core": "^3.5.0",
+    "karma-coverage": "^2.0.2",
+    "karma-phantomjs-launcher": "^1.0.4",
     "less": "^3.10.3",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
