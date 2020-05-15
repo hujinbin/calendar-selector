@@ -31,6 +31,8 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
+    "babel": "^6.23.0",
+    "mocha": "^7.1.2",
     "vue-hot-reload-api": "^2.3.4"
   },
   "alias": {

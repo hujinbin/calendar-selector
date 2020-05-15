@@ -7,10 +7,11 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
+    
     // frameworks to use
+    // 测试框架
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine','mocha','chai'],
 
 
     // list of files / patterns to load in the browser
@@ -27,7 +28,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './test/*.js':['coverage']
+      './test/*.js':['coverage', 'babel']
     },
 
 
