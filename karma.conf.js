@@ -11,14 +11,20 @@ module.exports = function(config) {
     // frameworks to use
     // 测试框架
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    // frameworks: ['jasmine','mocha','chai'],
-    frameworks: ['jasmine'],
-
+    frameworks: ['mocha', 'sinon-chai'],
+    // frameworks: ['jasmine'],
+    client: {
+      chai: {
+        includeStack: true
+      }
+    },
 
     // list of files / patterns to load in the browser
     files: [
       './test/*.js'
     ],
+
+    
 
 
     // list of files / patterns to exclude
@@ -61,8 +67,8 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    // browsers: ['Chrome'],
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
+    // browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

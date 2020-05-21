@@ -24,18 +24,25 @@
     "@vue/component-compiler-utils": "^3.0.0",
     "cssnano": "^4.1.10",
     "jasmine-core": "^3.5.0",
+    "karma": "^5.0.9",
+    "karma-chai": "^0.1.0",
+    "karma-chai-spies": "^0.1.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.2",
     "karma-jasmine": "^3.1.1",
+    "karma-mocha": "^2.0.1",
     "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sinon-chai": "^2.0.2",
     "less": "^3.10.3",
+    "mocha": "^7.1.2",
     "phantom": "^6.3.0",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
     "babel": "^6.23.0",
-    "mocha": "^7.1.2",
     "vue-hot-reload-api": "^2.3.4"
   },
   "alias": {
