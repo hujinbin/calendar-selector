@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "babel": "^6.23.0",
+    "chai": "^4.2.0",
     "vue-hot-reload-api": "^2.3.4"
   },
   "alias": {
