@@ -1,9 +1,9 @@
 // const expect = chai.expect;
 import Vue from 'vue'
-import calendar from '../src/index'
+import calendar from '../src/index.vue'
 
-// Vue.config.productionTip = false;
-// Vue.config.devtools = false;
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
 
 describe('calendar.vue', () => {
   it('contains a passing spec', function() {
