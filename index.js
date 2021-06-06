@@ -4,7 +4,7 @@ const install = Vue => {
     Vue.component(Calendar.name, Calendar)
 }
 
-export {
+export default {
     install,
     Calendar,
 }
